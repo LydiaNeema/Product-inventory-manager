@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PIM</title>
+    <link rel="stylesheet" href="./style.css">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+
+</head>
+<body>
+    <div class="layout">
+    <!--navigation bar-->
+    
+    <aside class="navigation">
+        <div class="logo">
+            <div class="topheading">
+        <img src="https://cdn-icons-png.flaticon.com/512/847/847969.png" width="30" alt="logo">
+    <h1><Span>Pim-ms</Span></h1>
+    </div>
+    <p class="heading">Inventory management system</p>
+ </div>
+<!--onclick to show the main page-->
+        <a href="#" class="nav">
+            <i class="material-icons">dashboard</i>
+        <p>Dashboard</p>
+        </a>
+<!---onclick to show different product categories--> 
+     <a href="#" class="nav">
+         <i class="material-icons">category</i>
+        <p>Categories</p>
+     </a>
+    <!--onclick to show the different warehouses and products avaiable-->
+         <a href="#" class="nav">
+            <i class="material-icons">location_on</i>
+        <p>Warehouse</p>
+        </a>
+<!--onclick to show the productds and quantinty levels-->
+         <a href="#" class="nav">
+            <i class="material-icons">inventory</i>
+        <p>Stock</p>
+        </a>
+    </aside>
+ 
+    <!--main section-->
+<main id="container">
+    
+        <section class="upper">
+
+
+        </section>
+        <section class="middle">
+<h2 class="tagname">Inventory Dashboard</h2>
+<input type="text" placeholder="Search product" id="search-input">
+<button id="search"><i class="material-icons">search</i>Search</button>
+<button id="addbtn"><i class="material-icons">add</i> Add Product</button>
+<button id="filter"><i class="material-icons">filter_list</i>Filter</button>
+
+
+
+
+
+
+        </section>
+        <section class="display">
+            
+            <table>
+                <thead class="head">
+                    <tr>
+                        <th>Product Name</th>
+                        <th>Product Code</th>
+                        <th>Category</th>
+                        <th>Location</th>
+                        <th>Quantity</th>
+                        <th>Cost</th>
+                        
+                    </tr>
+
+                </thead>
+                <tbody class="product list">
+                    <!---js to render the products here-->
+                </tbody>
+            </table>
+
+        </section>
+
+
+    </section>
+
+</main>
+</div>
+    <script src="index.js"></script>
+    </script>
+</body>
+</html>
