@@ -40,6 +40,14 @@
             <i class="material-icons">inventory</i>
         <p>Stock</p>
         </a>
+        <!--onclick to alow the user log out-->
+        <div class="sign-out">
+        <a href="#" class="nav">
+            <i class="material-icons">logout</i>
+        <p>Sign Out</p>
+        </a>
+        </div>
+
     </aside>
  
     <!--main section-->
@@ -56,17 +64,13 @@
 <button id="addbtn"><i class="material-icons">add</i> Add Product</button>
 <button id="filter"><i class="material-icons">filter_list</i>Filter</button>
 
-
-
-
-
-
         </section>
         <section class="display">
             
             <table>
                 <thead class="head">
                     <tr>
+                        <th>#</th>
                         <th>Product Name</th>
                         <th>Product Code</th>
                         <th>Category</th>
@@ -77,7 +81,7 @@
                     </tr>
 
                 </thead>
-                <tbody class="product list">
+                <tbody class="product-list">
                     <!---js to render the products here-->
                 </tbody>
             </table>
