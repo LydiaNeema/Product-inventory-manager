@@ -1,106 +1,139 @@
 {
   "Products": [
     {
-      "id": 1,
-      "name": "Tissue",
+      "id": "1",
+      "name": "Tissue Paper",
       "code": "Pr-001",
-      "category": "Toileraties",
-      "location": "Aile-A",
+      "category": "toiletries",
+      "location": "Aisle-A",
       "quantity": "20",
-      "cost": 30
+      "cost": "30"
     },
     {
-      "id": 2,
+      "id": "2",
       "name": "Happic",
       "code": "Pr-002",
-      "category": "Toileraties",
-      "location": "Aile-A",
+      "category": "toiletries",
+      "location": "Aisle-A",
       "quantity": "10",
       "cost": 100
     },
     {
-      "id": 3,
+      "id": "3",
       "name": "Masking tape",
       "code": "Pr-003",
       "category": "Production",
-      "location": "Aile-B",
+      "location": "Aisle-B",
       "quantity": "60",
       "cost": 50
     },
     {
-      "id": 4,
+      "id": "4",
       "name": "Cable ties",
       "code": "Pr-004",
-      "category": "Electrical",
-      "location": "Aile-C",
+      "category": "electronics",
+      "location": "Aisle-C",
       "quantity": "100",
       "cost": 70
     },
     {
-      "id": 5,
+      "id": "5",
       "name": "Files",
       "code": "Pr-005",
       "category": "Stationery",
-      "location": "Aile-D",
+      "location": "Aisle-D",
       "quantity": "100",
       "cost": 250
     },
     {
-      "id": 6,
+      "id": "6",
       "name": "Pens",
       "code": "Pr-006",
       "category": "Stationery",
-      "location": "Aile-D",
+      "location": "Aisle-D",
       "quantity": "50",
       "cost": 10
     },
     {
-      "id": 7,
+      "id": "7",
       "name": "Books",
       "code": "Pr-007",
       "category": "Stationery",
-      "location": "Aile-D",
+      "location": "Aisle-D",
       "quantity": "300",
       "cost": 40
     },
     {
-      "id": 8,
+      "id": "8",
       "name": "Screw Driver",
       "code": "Pr-008",
-      "category": "Electrical",
-      "location": "Aile-C",
+      "category": "electronics",
+      "location": "Aisle-C",
       "quantity": "10",
       "cost": 300
     },
     {
-      "id": 9,
+      "id": "9",
       "name": "Electrical extension",
       "code": "Pr-009",
-      "category": "Electrical",
-      "location": "Aile-C",
+      "category": "electronics",
+      "location": "Aisle-C",
       "quantity": "5",
       "cost": 1200
     },
     {
-      "id": 10,
+      "id": "10",
       "name": "Jik",
       "code": "Pr-010",
-      "category": "Toileraties",
-      "location": "Aile-A",
+      "category": "toiletries",
+      "location": "Aisle-A",
       "quantity": "10",
       "cost": 150
     },
     {
-      "id": "1482",
-      "form": {}
+      "id": "65bb",
+      "name": "Splicing Kit",
+      "code": "011",
+      "category": "electronics",
+      "location": "Aisle-C",
+      "quantity": "2",
+      "cost": "15000"
     },
     {
-      "id": "8a16",
-      "form": {}
+      "id": "cb07",
+      "name": "Chair",
+      "code": "012",
+      "category": "Furniture",
+      "location": "Aile-E",
+      "quantity": "100",
+      "cost": "450"
     },
     {
-      "id": "b63b",
-      "form": {}
+      "id": "9b13",
+      "name": "Desk",
+      "code": "013",
+      "category": "Furniture",
+      "location": "Aile-E",
+      "quantity": "100",
+      "cost": "1000"
+    },
+    {
+      "id": "4884",
+      "name": "Mopping stick",
+      "code": "Pr-9748",
+      "category": "toiletries",
+      "location": "",
+      "quantity": "80",
+      "cost": "600"
+    },
+    {
+      "id": "9101",
+      "name": "Pensil Erasor",
+      "code": "Pr-6398",
+      "category": "stationery",
+      "location": "Aisle-D",
+      "quantity": "300",
+      "cost": "5"
     }
   ]
 }

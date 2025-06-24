@@ -62,7 +62,16 @@
 <input type="text" placeholder="Search product" id="search-input">
 <button id="search"><i class="material-icons">search</i>Search</button>
 <button id="addbtn"><i class="material-icons">add</i> Add Product</button>
-<button id="filter"><i class="material-icons">filter_list</i>Filter</button>
+<button id="filter"><i class="material-icons">filter_list</i>Filter
+    <select id="selectCat">
+        <option value="">-- Select Category --</option>
+        <option value="electronics">Electronics</option>
+        <option value="stationery">Stationery</option>
+        <option value="production">Production</option>
+        <option value="toiletries">Toiletries</option>
+        <option value="furniture">Furniture</option>
+    </select>
+</button>
 
         </section>
         <section class="display">
@@ -77,6 +86,7 @@
                         <th>Location</th>
                         <th>Quantity</th>
                         <th>Cost</th>
+                        
                         
                     </tr>
 

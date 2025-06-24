@@ -210,3 +210,8 @@ background-color: #003366;
     display: grid;
     grid-template-columns:2fr;
 }
+.hint{
+    font-size:0.75em;
+    color:gray;
+    margin-bottom:10px;
+}
