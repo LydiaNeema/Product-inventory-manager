@@ -2,29 +2,46 @@ const display=document.querySelector('.display');
 const tableBody=document.querySelector('.product-list');
 const APIURL="http://localhost:3000/Products";
 
+
+
+function renderTable(products) {
+  tableBody.innerHTML = "";
+
+  if (products.length === 0) {
+    tableBody.innerHTML = `<tr><td colspan="9" style="text-align:center;">No products found</td></tr>`;
+    return;
+  }
+
+  products.forEach((product, index) => {
+    const row = document.createElement("tr");
+    row.dataset.id = product.id;
+
+    row.innerHTML = `
+      <td>${index + 1}</td>
+      <td>${product.name}</td>
+      <td>${product.code}</td>
+      <td>${product.category}</td>
+      <td>${product.location}</td>
+      <td>${product.quantity}</td>
+      <td>Ksh:${product.cost}</td>
+       <td><button class="issue"  title="Issue/Reduce product quantity"><i class="material-icons">remove_circle</i></button></td>
+    <td><button class="receive"title="Receive/Add product quantity"><i class="material-icons">add_circle</i></button></td>
+           <td><button class="edit"title="Edit product details"><i class="material-icons">edit</i></button></td>
+            <td><button class="delete"title="Delete/remove product"><i class="material-icons">delete</i></button></td>
+    `;
+
+    tableBody.appendChild(row);
+  });
+}
+
 function displayProducts(){
     tableBody.innerHTML="";
 fetch(APIURL)
 .then(response=>response.json())
-    .then(products=>
-        {
-        products.forEach((product,index)=>{
-            const tabledata=document.createElement('tr');
-             tabledata.dataset.id = product.id;
-            tabledata.innerHTML=`<td>${index + 1}</td><td>${product.name}</td><td>${product.code}</td><td>${product.category}</td><td>${product.location}</td><td>${product.quantity}</td><td>Ksh:${product.cost}</td>
-            
-            <td><button class="issue"  title="Issue/Reduce product quantity"><i class="material-icons">remove_circle</i></button></td>
-    <td><button class="receive"title="Receive/Add product quantity"><i class="material-icons">add_circle</i></button></td>
-           <td><button class="edit"title="Edit product details"><i class="material-icons">edit</i></button></td>
-            <td><button class="delete"title="Delete/remove product"><i class="material-icons">delete</i></button></td>
-           `;
-           
-            tableBody.appendChild(tabledata);
-
-        })
-    })
-
+        .then(products => renderTable(products))
+    .catch(error => console.error("Failed to fetch products:", error));
 }
+        
 
 
 // function to add the product functionality
@@ -91,7 +108,7 @@ formWrapper.appendChild(form);
         //autogenerating a code for the new product
         const code = "Pr-" + Math.floor(Math.random() * 10000);
         newCodeInput.value=code;
-        newCodeInput.ReadOnly=true;
+        newCodeInput.readOnly=true;
 
      
 //determinigng the products location based on the selected category
@@ -116,7 +133,7 @@ formWrapper.appendChild(form);
 
  newLocationInput.value=location;
 
-newLocationInput.ReadOnly=true;
+newLocationInput.readOnly=true;
 if (!newName || !newQuantity || !newCost || !selectedCategory) {
   alert("Please fill in all required fields.");
   return; 
@@ -173,34 +190,11 @@ function searchButton(){
                  product.code.toLowerCase().includes(searchInput)
             );
         });
-        tableBody.innerHTML="";
-        if (filtered.length === 0) {
-  tableBody.innerHTML = `<tr><td colspan="9" style="text-align:center;">No products found</td></tr>`;
-  return;
-}
-
-filtered.forEach((product,index)=>{
-    const tabledata = document.createElement('tr');
-                tabledata.innerHTML = `
-                    <td>${index + 1}</td>
-                    <td>${product.name}</td>
-                    <td>${product.code}</td>
-                    <td>${product.category}</td>
-                    <td>${product.location}</td>
-                    <td>${product.quantity}</td>
-                    <td>Ksh:${product.cost}</td>
-                    <td><button class="issue"  title="Issue/Reduce product quantity"><i class="material-icons">remove_circle</i></button></td>
-    <td><button class="receive"title="Receive/Add product quantity"><i class="material-icons">add_circle</i></button></td>
-                     <td><button class="edit"title="Edit product details"><i class="material-icons">edit</i></button></td>
-            <td><button class="delete"title="Delete/remove product"><i class="material-icons">delete</i></button></td>
-                `;
-                tableBody.appendChild(tabledata);
-
-
+       renderTable(filtered);
     });
     
         });
-    });
+    
     }
 searchButton();
 
@@ -209,38 +203,21 @@ function filterButton(){
     const filterBtn=document.getElementById('filter');
     filterBtn.addEventListener('click',function(e){
         e.preventDefault();
-        const selectCat=document.getElementById('selectCat').value;
+        const selectedCategory=document.getElementById('selectCat').value;
 
         fetch(APIURL)
         .then(response=>response.json())
-        .then(products=>{
-            const selected=products.filter(product=>{
-return(
-                 product.category.toLowerCase().includes(selectCat)
+        .then((products)=>{
+            const selected=products.filter(product=>
+
+                 (product.category||'').toLowerCase().includes(selectedCategory)
             );
+            renderTable(selected);
         });
-        tableBody.innerHTML="";
-        selected.forEach((product,index)=>{
-    const tabledata = document.createElement('tr');
-                tabledata.innerHTML = `
-                    <td>${index + 1}</td>
-                    <td>${product.name}</td>
-                    <td>${product.code}</td>
-                    <td>${product.category}</td>
-                    <td>${product.location}</td>
-                    <td>${product.quantity}</td>
-                    <td>Ksh:${product.cost}</td>
-                    <td><button class="issue"  title="Issue/Reduce product quantity"><i class="material-icons">remove_circle</i></button></td>
-    <td><button class="receive"title="Receive/Add product quantity"><i class="material-icons">add_circle</i></button></td>
-                    <td><button class="edit"title="Edit product details"><i class="material-icons">edit</i></button></td>
-            <td><button class="delete"title="Delete/remove product"><i class="material-icons">delete</i></button></td>
-                `;
-                tableBody.appendChild(tabledata);
+        
 
-            })
-        })
-    })
-
+            });
+       
 }
 filterButton();
 function handleStockRequest(){
@@ -286,7 +263,7 @@ function updateProductQuantity(id,newQuantity){
     .catch(error=>console.error('Failed to update Quantity:',error));
       
    }
-      handleStockRequest();
+      
     
 
 
@@ -307,6 +284,8 @@ const cost =row.children[6].textContent.replace('Ksh:','');
 const newName=prompt('Enter product name',name);
 const newQuantity=prompt('Enter quantity name',quantity);
 const newCost=prompt('Edit cost',cost);
+if (newName === null || newQuantity === null || newCost === null) return;
+
 
 
 const updatedProduct={
@@ -331,7 +310,7 @@ fetch(`${APIURL}/${id}`,{
         
     });
 }
-editButton();
+
 
 function deleteButton(){
     tableBody.addEventListener('click',function(e){
@@ -352,17 +331,16 @@ function deleteButton(){
         
     });
 }
-deleteButton();
 
-
-    document.addEventListener('DOMContentLoaded', () => {
+document.addEventListener('DOMContentLoaded', () => {
   displayProducts();
   addProduct();
-  editButton();           // ✅ Delegated listener
-  deleteButton();         // ✅ Delegated listener
+  editButton();
+  deleteButton();
   handleStockRequest();
-});
-document.addEventListener('DOMContentLoaded', () => {
+  searchButton();   // <-- Add these here too
+  filterButton();
+
   const sections = {
     dashboard: document.getElementById('dashboard-section'),
     categories: document.getElementById('categories-section'),
@@ -376,7 +354,6 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   }
 
-  // Link click handlers
   document.getElementById('dashboard-link').addEventListener('click', (e) => {
     e.preventDefault();
     showSection('dashboard');
@@ -397,8 +374,8 @@ document.addEventListener('DOMContentLoaded', () => {
     showSection('stock');
   });
 
-  // Initially show dashboard only
   showSection('dashboard');
 });
 
 
+  

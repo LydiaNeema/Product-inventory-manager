@@ -10,15 +10,6 @@
       "cost": "100"
     },
     {
-      "id": "3",
-      "name": "Masking tape",
-      "code": "Pr-003",
-      "category": "Production",
-      "location": "Aisle-B",
-      "quantity": "60",
-      "cost": 50
-    },
-    {
       "id": "4",
       "name": "Cable ties",
       "code": "Pr-004",
@@ -26,15 +17,6 @@
       "location": "Aisle-C",
       "quantity": "100",
       "cost": 70
-    },
-    {
-      "id": "5",
-      "name": "Files",
-      "code": "Pr-005",
-      "category": "Stationery",
-      "location": "Aisle-D",
-      "quantity": "100",
-      "cost": 250
     },
     {
       "id": "6",
@@ -83,11 +65,11 @@
     },
     {
       "id": "65bb",
-      "name": "Splicing Kit",
+      "name": "Splicing Kit 1",
       "code": "011",
       "category": "electronics",
       "location": "Aisle-C",
-      "quantity": "2",
+      "quantity": "3",
       "cost": "15000"
     },
     {
