@@ -15,7 +15,7 @@
       "code": "Pr-004",
       "category": "electronics",
       "location": "Aisle-C",
-      "quantity": "100",
+      "quantity": 144,
       "cost": 70
     },
     {
@@ -98,15 +98,6 @@
       "location": "Aisle-D",
       "quantity": "300",
       "cost": "5"
-    },
-    {
-      "id": "1fb4",
-      "name": "Splicing Kit",
-      "code": "Pr-612",
-      "category": "electrical",
-      "location": "Aisle-F",
-      "quantity": "100",
-      "cost": "300"
     }
   ]
 }

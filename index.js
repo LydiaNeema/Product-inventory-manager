@@ -340,8 +340,15 @@ document.addEventListener('DOMContentLoaded', () => {
   handleStockRequest();
   searchButton();   // <-- Add these here too
   filterButton();
+});
 
-  const sections = {
+  document.getElementById("logoutBtn").addEventListener("click", function (e) {
+    e.preventDefault(); // prevent any default link action
+    localStorage.removeItem("loggedIn");
+    window.location.href = "login.html";
+  });
+
+ /* const sections = {
     dashboard: document.getElementById('dashboard-section'),
     categories: document.getElementById('categories-section'),
     warehouse: document.getElementById('warehouse-section'),
@@ -376,6 +383,9 @@ document.addEventListener('DOMContentLoaded', () => {
 
   showSection('dashboard');
 });
+document.getElementById("signOutBtn").addEventListener("click", function () {
+  localStorage.removeItem("loggedIn");
+  window.location.href = "login.html";
+});
 
-
-  
+ */

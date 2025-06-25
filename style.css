@@ -71,10 +71,14 @@ box-shadow:2px 0 8px rgba(0, 0, 0, 0.1);
 }
 
 
-.nav hover{
+.nav :hover{
     background-color: rgba(255,255,255,0.15);
     cursor:pointer;
 }
+.nav.active {
+  background-color: rgba(255, 255, 255, 0.2);
+}
+
 
 .navigation i{
     font-size:1.4em;
@@ -95,6 +99,8 @@ table{
     box-shadow:0 2px 5px rgba(0,0,0,0.05);
 }
 th,td{
+  font-size: 0.95em;
+  line-height: 1.4;
     padding:12px 16px;
     text-align:left;
     border-bottom:1px solid #eee;
@@ -136,12 +142,18 @@ tbody tr:hover {
   justify-content: flex-start;
 }
 
+.controls button,
+.controls select {
+  flex: none;
+  width: auto;
+}
 .controls input,
 .controls button,
 .controls select {
   flex: 1 1 auto;
   min-width: 150px;
   max-width: 300px;
+
 }
 
 .form-wrapper {
