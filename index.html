@@ -21,22 +21,22 @@
     <p class="heading">Inventory management system</p>
  </div>
 <!--onclick to show the main page-->
-        <a href="#" class="nav">
+        <a href="#" class="nav" id="dashboard-link">
             <i class="material-icons">dashboard</i>
         <p>Dashboard</p>
         </a>
 <!---onclick to show different product categories--> 
-     <a href="#" class="nav">
+     <a href="#" class="nav" id="categories-link">
          <i class="material-icons">category</i>
         <p>Categories</p>
      </a>
     <!--onclick to show the different warehouses and products avaiable-->
-         <a href="#" class="nav">
+         <a href="#" class="nav" id="warehouse-link">
             <i class="material-icons">location_on</i>
         <p>Warehouse</p>
         </a>
 <!--onclick to show the productds and quantinty levels-->
-         <a href="#" class="nav">
+         <a href="#" class="nav" id="stock-link">
             <i class="material-icons">inventory</i>
         <p>Stock</p>
         </a>
@@ -52,11 +52,8 @@
  
     <!--main section-->
 <main id="container">
-    
-        <section class="upper">
-
-
-        </section>
+    <!--dashboard section-->
+        <section id="dashboard-section">
         <section class="middle">
 <h2 class="tagname">Inventory Dashboard</h2>
 <input type="text" placeholder="Search product" id="search-input">
@@ -97,10 +94,22 @@
             </table>
 
         </section>
-
+</section>
 
     </section>
 
+    <!--Categories section-->
+    <section id="categories-section" style="display:none;">
+        <h2>Product categories</h2>
+    </section>
+    <!--Warehouse section-->
+    <section id="warehouse-section" style="display:none;">
+        <h2>Location view</h2>
+    </section>
+    <!--Stock section-->
+    <section id="stock-section" style="display:none;">
+        <h2>Stock-Overview</h2>
+    </section>
 </main>
 </div>
     <script src="index.js"></script>

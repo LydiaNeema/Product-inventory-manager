@@ -113,6 +113,10 @@ function addProduct(){
  newLocationInput.value=location;
 
 newLocationInput.ReadOnly=true;
+if (!newName || !newQuantity || !newCost || !selectedCategory) {
+  alert("Please fill in all required fields.");
+  return; 
+}
 
 
     fetch(APIURL,{
@@ -166,6 +170,10 @@ function searchButton(){
             );
         });
         tableBody.innerHTML="";
+        if (filtered.length === 0) {
+  tableBody.innerHTML = `<tr><td colspan="9" style="text-align:center;">No products found</td></tr>`;
+  return;
+}
 
 filtered.forEach((product,index)=>{
     const tabledata = document.createElement('tr');
@@ -271,8 +279,69 @@ fetch(`${APIURL}/${id}`,{
 }
 editButton();
 
+function deleteButton(){
+    tableBody.addEventListener('click',function(e){
+        if(e.target.closest('.delete')){
+            const row=e.target.closest('tr');
+            const id=row.dataset.id;
+
+            const confirmDelete=confirm('Are you sure you want to delete this product?');
+            if(!confirmDelete) return;
+            fetch(`${APIURL}/${id}`,{
+                method:'DELETE',
+            })
+            .then(()=>{
+                displayProducts();
+            })
+            .catch((error)=>console.error('Delete failed',error))
+            }
+        
+    });
+}
+deleteButton();
+
+
     document.addEventListener('DOMContentLoaded', () => {
   displayProducts();
   addProduct();
 });
+document.addEventListener('DOMContentLoaded', () => {
+  const sections = {
+    dashboard: document.getElementById('dashboard-section'),
+    categories: document.getElementById('categories-section'),
+    warehouse: document.getElementById('warehouse-section'),
+    stock: document.getElementById('stock-section')
+  };
+
+  function showSection(selected) {
+    for (const key in sections) {
+      sections[key].style.display = (key === selected) ? 'block' : 'none';
+    }
+  }
+
+  // Link click handlers
+  document.getElementById('dashboard-link').addEventListener('click', (e) => {
+    e.preventDefault();
+    showSection('dashboard');
+  });
+
+  document.getElementById('categories-link').addEventListener('click', (e) => {
+    e.preventDefault();
+    showSection('categories');
+  });
+
+  document.getElementById('warehouse-link').addEventListener('click', (e) => {
+    e.preventDefault();
+    showSection('warehouse');
+  });
+
+  document.getElementById('stock-link').addEventListener('click', (e) => {
+    e.preventDefault();
+    showSection('stock');
+  });
+
+  // Initially show dashboard only
+  showSection('dashboard');
+});
+
 
