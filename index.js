@@ -12,8 +12,12 @@ fetch(APIURL)
             const tabledata=document.createElement('tr');
              tabledata.dataset.id = product.id;
             tabledata.innerHTML=`<td>${index + 1}</td><td>${product.name}</td><td>${product.code}</td><td>${product.category}</td><td>${product.location}</td><td>${product.quantity}</td><td>Ksh:${product.cost}</td>
-           <td> <button class="edit"><i class="material-icons">edit</i></button></td>
-            <td><button class="delete"><i class="material-icons">delete</i></button></td>`;
+            
+            <td><button class="issue"  title="Issue/Reduce product quantity"><i class="material-icons">remove_circle</i></button></td>
+    <td><button class="receive"title="Receive/Add product quantity"><i class="material-icons">add_circle</i></button></td>
+           <td><button class="edit"title="Edit product details"><i class="material-icons">edit</i></button></td>
+            <td><button class="delete"title="Delete/remove product"><i class="material-icons">delete</i></button></td>
+           `;
            
             tableBody.appendChild(tabledata);
 
@@ -185,8 +189,10 @@ filtered.forEach((product,index)=>{
                     <td>${product.location}</td>
                     <td>${product.quantity}</td>
                     <td>Ksh:${product.cost}</td>
-                    <td><button class="edit"><i class="material-icons">edit</i></button></td>
-                    <td><button class="delete"><i class="material-icons">delete</i></button></td>
+                    <td><button class="issue"  title="Issue/Reduce product quantity"><i class="material-icons">remove_circle</i></button></td>
+    <td><button class="receive"title="Receive/Add product quantity"><i class="material-icons">add_circle</i></button></td>
+                     <td><button class="edit"title="Edit product details"><i class="material-icons">edit</i></button></td>
+            <td><button class="delete"title="Delete/remove product"><i class="material-icons">delete</i></button></td>
                 `;
                 tableBody.appendChild(tabledata);
 
@@ -224,8 +230,10 @@ return(
                     <td>${product.location}</td>
                     <td>${product.quantity}</td>
                     <td>Ksh:${product.cost}</td>
-                    <td><button class="edit"><i class="material-icons">edit</i></button></td>
-                    <td><button class="delete"><i class="material-icons">delete</i></button></td>
+                    <td><button class="issue"  title="Issue/Reduce product quantity"><i class="material-icons">remove_circle</i></button></td>
+    <td><button class="receive"title="Receive/Add product quantity"><i class="material-icons">add_circle</i></button></td>
+                    <td><button class="edit"title="Edit product details"><i class="material-icons">edit</i></button></td>
+            <td><button class="delete"title="Delete/remove product"><i class="material-icons">delete</i></button></td>
                 `;
                 tableBody.appendChild(tabledata);
 
@@ -235,6 +243,52 @@ return(
 
 }
 filterButton();
+function handleStockRequest(){
+    tableBody.addEventListener('click',function(e){
+        const row=e.target.closest('tr');
+        if(!row)return;
+        const id=row.dataset.id;
+        const currentQuantity=parseInt(row.children[5].textContent);
+// isuance logic
+            if(e.target.closest('.issue')){
+const amount=parseInt(prompt('Enter quantity to issue'));
+if(amount>0&& amount<=currentQuantity){
+    const updatedQuantity=currentQuantity-amount;
+    updateProductQuantity(id,updatedQuantity);
+}
+else {
+    alert('Invalid amount.Must be greater than 0 and not exceeding avaiable quantity');
+}
+}
+//receiving logic
+   if(e.target.closest('.receive')) {
+    const amount=parseInt(prompt('Enter quantity to receive:'));
+    if(amount>0){
+        const updatedQuantity=currentQuantity+amount;
+        updateProductQuantity(id,updatedQuantity);
+    }
+    else{
+        alert("invalid amount.Must be a positive number.");
+    }
+}
+    });
+}
+function updateProductQuantity(id,newQuantity){
+    fetch(`${APIURL}/${id}`,{
+        method:'PATCH',
+        headers:{
+            'content-type':'application/json'
+        },
+        body:JSON.stringify({quantity:newQuantity})
+    })
+    .then(response=>response.json())
+    .then(()=>displayProducts())
+    .catch(error=>console.error('Failed to update Quantity:',error));
+      
+   }
+      handleStockRequest();
+    
+
 
 function editButton(){
     

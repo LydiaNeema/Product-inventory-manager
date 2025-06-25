@@ -160,12 +160,16 @@ tbody tr:hover {
 .edit{
     background-color:green;
     color:white;
-    border-radius: 8px;  
+    border-radius: 8px; 
+     padding: 1px 1.5px;
+     font-size: 3px; 
 }
 .delete{
      background-color:red;
     color:white;
     border-radius: 8px; 
+     padding: 1px 1.5px;
+     font-size:3px;
 }
 
 .product-form{
@@ -210,8 +214,28 @@ background-color: #003366;
     display: grid;
     grid-template-columns:2fr;
 }
-.hint{
-    font-size:0.75em;
-    color:gray;
-    margin-bottom:10px;
+.issue .receive{
+     padding: 1px 1.5px;
+  border: none;
+  border-radius: 5px;
+  color: white;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  gap: 2px;
+  font-size: 3px;
+}
+.issue{
+    background-color: #e74c3c;
+}
+.receive {
+  background-color: #27ae60;
+}
+
+.issue:hover {
+  background-color: #c0392b;
+}
+
+.receive:hover {
+  background-color: #1e8449;
 }
