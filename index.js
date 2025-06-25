@@ -69,9 +69,9 @@ function addProduct(){
                 `;
 
     //appending the form to the middle section           
-                const middle=document.querySelector('.middle');
-                 middle.appendChild(form);
-                
+              const formWrapper = document.querySelector('.form-wrapper');
+formWrapper.innerHTML = ""; // Clear any existing form
+formWrapper.appendChild(form);
                 
        
     
@@ -358,6 +358,9 @@ deleteButton();
     document.addEventListener('DOMContentLoaded', () => {
   displayProducts();
   addProduct();
+  editButton();           // ✅ Delegated listener
+  deleteButton();         // ✅ Delegated listener
+  handleStockRequest();
 });
 document.addEventListener('DOMContentLoaded', () => {
   const sections = {

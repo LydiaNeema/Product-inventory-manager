@@ -113,21 +113,39 @@ tbody tr:hover {
   background-color: #f0f8ff;
 }
 
-.middle{
+.middle {
   display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  width:100%;
+  padding: 20px;
+  box-sizing: border-box;
+}
+
+.controls,
+.form-wrapper {
+  width: 100%;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  box-sizing: border-box;
+}
+
+.controls {
   align-items: center;
-  justify-content: space-between;
-  gap:10px;
-    width:100%;
-    border-collapse: collapse;
-    background-color: white;
-    border-radius:10px;
-    overflow:hidden;
-    box-shadow:0 2px 5px rgba(0,0,0,0.05);
-    padding: 12px 16px;
-    text-align:left;
-     border-bottom:1px solid #eee;
-     
+  justify-content: flex-start;
+}
+
+.controls input,
+.controls button,
+.controls select {
+  flex: 1 1 auto;
+  min-width: 150px;
+  max-width: 300px;
+}
+
+.form-wrapper {
+  margin-top: 15px;
 }
 
 .middle #search{
@@ -172,22 +190,18 @@ tbody tr:hover {
      font-size:3px;
 }
 
-.product-form{
-    background-color: #fff;
-    padding:20px;
-    border-radius:10px;
-    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
-    max-width:400px;
-    margin-top:20px;
-    display: flex;
-    flex-direction:column;
-    gap:15px;
-    
+.product-form {
+  width: 100%;
+  background-color: white;
+  padding: 15px;
+  border-radius: 8px;
+  box-shadow: 0 0 10px rgba(0,0,0,0.1);
 }
 .product-form label{
     font-weight: 600;
     color:#333;
     margin-bottom:4px;
+    padding: 10px;
 }
 .product-form input[type="text"],
 .product-form input[type="number"]{
@@ -195,7 +209,7 @@ tbody tr:hover {
     border:1px solid #ccc;
     border-radius:6px;
     font-size:1em;
-    width: 250px;
+    width: 50%;
 }
 .buttongroup{
 background-color: navy;

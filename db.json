@@ -1,22 +1,13 @@
 {
   "Products": [
     {
-      "id": "1",
-      "name": "Tissue Paper",
-      "code": "Pr-001",
-      "category": "toiletries",
-      "location": "Aisle-A",
-      "quantity": 33,
-      "cost": "30"
-    },
-    {
       "id": "2",
-      "name": "Happic",
+      "name": "Happic soft",
       "code": "Pr-002",
       "category": "toiletries",
       "location": "Aisle-A",
       "quantity": "10",
-      "cost": 100
+      "cost": "100"
     },
     {
       "id": "3",
@@ -125,6 +116,15 @@
       "location": "Aisle-D",
       "quantity": "300",
       "cost": "5"
+    },
+    {
+      "id": "1fb4",
+      "name": "Splicing Kit",
+      "code": "Pr-612",
+      "category": "electrical",
+      "location": "Aisle-F",
+      "quantity": "100",
+      "cost": "300"
     }
   ]
 }
