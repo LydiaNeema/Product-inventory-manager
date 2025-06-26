@@ -1,9 +1,15 @@
 const display=document.querySelector('.display');
-const tableBody=document.querySelector('.product-list');
+// API URL for product management
+// This URL should point to your backend server where the product data is managed.
+// Make sure your backend is running and accessible at this URL.
+
 const APIURL="http://localhost:3000/Products";
+// This is the table body where product data will be displayed
+const tableBody=document.querySelector('.product-list');
 
-
-
+// Function to render the product table
+// This function takes an array of products and populates the table body with rows for each product
+// Each row contains product details and action buttons for issuing, receiving, editing, and deleting products
 function renderTable(products) {
   tableBody.innerHTML = "";
 
@@ -33,7 +39,8 @@ function renderTable(products) {
     tableBody.appendChild(row);
   });
 }
-
+//function to display products
+// This function fetches the product data from the API and calls renderTable to display it
 function displayProducts(){
     tableBody.innerHTML="";
 fetch(APIURL)
@@ -44,9 +51,8 @@ fetch(APIURL)
         
 
 
-// function to add the product functionality
-function addProduct(){
-
+// function to add the new product functionality
+function addNewProduct(){
     const addButton=document.getElementById('addbtn');
     addButton.addEventListener("click",function(e){
         e.preventDefault();
@@ -85,7 +91,8 @@ function addProduct(){
 
                 `;
 
-    //appending the form to the middle section           
+    //appending the form to the middle section  div called form-wrapper
+    // This is where the form will be displayed in the HTML structure         
               const formWrapper = document.querySelector('.form-wrapper');
 formWrapper.innerHTML = ""; // Clear any existing form
 formWrapper.appendChild(form);
@@ -96,14 +103,14 @@ formWrapper.appendChild(form);
     form.addEventListener('submit',function(e){
         e.preventDefault();
 
-
-        const newName=form.querySelector('#productname').value;
-        
-        const newCodeInput=form.querySelector('#productCode');
-         const newLocationInput=form.querySelector('#productlocation');
-         const newQuantity=form.querySelector('#productQuantity').value;
-        const newCost=form.querySelector('#productcost').value;
-        const categoryInput = form.querySelector('#productcat');
+//get the values from the form inputs
+        // Using querySelector to get the input values from the form
+        const newName=form.querySelector('#productname').value;//name input field
+        const newCodeInput=form.querySelector('#productCode');//code input filed
+         const newLocationInput=form.querySelector('#productlocation');//location input field
+         const newQuantity=form.querySelector('#productQuantity').value;//quantity input field
+        const newCost=form.querySelector('#productcost').value;//cost input field
+        const categoryInput = form.querySelector('#productcat');//category input field
 
         //autogenerating a code for the new product
         const code = "Pr-" + Math.floor(Math.random() * 10000);
@@ -112,10 +119,11 @@ formWrapper.appendChild(form);
 
      
 //determinigng the products location based on the selected category
-  const selectedCategory = categoryInput.value.toLowerCase();
+  const selectedCategory = categoryInput.value.toLowerCase();// Convert to lowercase for consistency
 
  let location="";
-
+// Setting the location based on the selected category
+  // Using if-else statements to determine the location based on the selected category
   if (selectedCategory === 'electronics') {
     newLocationInput.value = 'Aisle-C';
   } else if (selectedCategory === 'toiletries') {
@@ -132,14 +140,17 @@ formWrapper.appendChild(form);
   }
 
  newLocationInput.value=location;
-
 newLocationInput.readOnly=true;
+
+// Validating the form inputs
+// Checking if any of the required fields are empty
 if (!newName || !newQuantity || !newCost || !selectedCategory) {
   alert("Please fill in all required fields.");
   return; 
 }
 
-
+// posting the new product data to the API
+// Using fetch to send a POST request to the API with the new product data
     fetch(APIURL,{
 method:'POST',
 headers:{
@@ -171,14 +182,18 @@ body:JSON.stringify({
     });
 }
 
-
+// Function to handle search functionality
+// This function adds an event listener to the search button and filters products based on the search input
 function searchButton(){
     const searchbtn=document.getElementById('search');
+     const clearBtn = document.getElementById('clear');
+  const searchInput = document.getElementById('search-input');
     searchbtn.addEventListener('click',function(e){
         e.preventDefault();
 
         const searchInput=document.getElementById('search-input').value.toLowerCase();
         
+if(searchInput==="")return;
 
         fetch(APIURL)
         .then(response=>response.json())
@@ -194,11 +209,24 @@ function searchButton(){
     });
     
         });
-    
+//clear button functionality
+        clearBtn.addEventListener('click', function(e) {
+    e.preventDefault();
+    searchInput.value = "";
+    displayProducts(); // show full product list again
+  });
+
+  // Auto-restore on empty input
+  searchInput.addEventListener('input', function() {
+    if (searchInput.value.trim() === "") {
+      displayProducts();
+    }
+});
     }
 searchButton();
 
-
+// Function to handle filtering products by category
+// This function adds an event listener to the filter button and filters products based on the selected category
 function filterButton(){
     const filterBtn=document.getElementById('filter');
     filterBtn.addEventListener('click',function(e){
@@ -220,6 +248,9 @@ function filterButton(){
        
 }
 filterButton();
+
+// Function to handle stock requests (issue/receive)
+// This function adds event listeners to the issue and receive buttons in the product table
 function handleStockRequest(){
     tableBody.addEventListener('click',function(e){
         const row=e.target.closest('tr');
@@ -250,6 +281,9 @@ else {
 }
     });
 }
+// Function to update product quantity
+// This function sends a PATCH request to the API to update the quantity of a product
+// It takes the product ID and the new quantity as parameters
 function updateProductQuantity(id,newQuantity){
     fetch(`${APIURL}/${id}`,{
         method:'PATCH',
@@ -266,7 +300,7 @@ function updateProductQuantity(id,newQuantity){
       
     
 
-
+// Function to handle editing products
 function editButton(){
     
     tableBody.addEventListener('click',function(e){
@@ -311,7 +345,7 @@ fetch(`${APIURL}/${id}`,{
     });
 }
 
-
+// Function to handle deleting products
 function deleteButton(){
     tableBody.addEventListener('click',function(e){
         if(e.target.closest('.delete')){
@@ -331,28 +365,25 @@ function deleteButton(){
         
     });
 }
-
+// Event listener for DOMContentLoaded to initialize the application
+// This ensures that the product list is displayed and all event listeners are set up after the DOM
 document.addEventListener('DOMContentLoaded', () => {
   displayProducts();
-  addProduct();
+  addNewProduct();
   editButton();
   deleteButton();
   handleStockRequest();
   searchButton();   // <-- Add these here too
   filterButton();
+  displayCategories()
 });
 
-  document.getElementById("logoutBtn").addEventListener("click", function (e) {
-    e.preventDefault(); // prevent any default link action
-    localStorage.removeItem("loggedIn");
-    window.location.href = "login.html";
-  });
 
- /* const sections = {
+// Navigation functionality
+// This section handles the navigation between different sections of the application
+  const sections = {
     dashboard: document.getElementById('dashboard-section'),
     categories: document.getElementById('categories-section'),
-    warehouse: document.getElementById('warehouse-section'),
-    stock: document.getElementById('stock-section')
   };
 
   function showSection(selected) {
@@ -370,22 +401,70 @@ document.addEventListener('DOMContentLoaded', () => {
     e.preventDefault();
     showSection('categories');
   });
-
-  document.getElementById('warehouse-link').addEventListener('click', (e) => {
-    e.preventDefault();
-    showSection('warehouse');
-  });
-
-  document.getElementById('stock-link').addEventListener('click', (e) => {
-    e.preventDefault();
-    showSection('stock');
-  });
-
   showSection('dashboard');
-});
-document.getElementById("signOutBtn").addEventListener("click", function () {
-  localStorage.removeItem("loggedIn");
-  window.location.href = "login.html";
-});
+  
+// Category Management
+// Initialize categories from localStorage or default values
+  let categories = JSON.parse(localStorage.getItem("categories")) || [
+  "Electronics",
+  "Furniture",
+  "Stationery",
+  "Toiletries"
+];
 
- */
+const categoryForm = document.getElementById("category-form");
+const categoryInput = document.getElementById("category-input");
+const categoryList = document.getElementById("category-list");
+
+function displayCategories() {
+  categoryList.innerHTML = "";
+
+  if (categories.length === 0) {
+    categoryList.innerHTML = "<li>No categories found.</li>";
+    return;
+  }
+
+  categories.forEach((category, index) => {
+    const li = document.createElement("li");
+    li.textContent = category;
+
+    const deleteBtn = document.createElement("button");
+    deleteBtn.textContent = "Delete";
+    deleteBtn.style.marginLeft = "10px";
+    deleteBtn.style.backgroundColor = "red";
+    deleteBtn.style.color = "white";
+    deleteBtn.style.border = "none";
+    deleteBtn.style.borderRadius = "5px";
+    deleteBtn.style.padding = "2px 6px";
+
+    deleteBtn.addEventListener("click", () => {
+      categories.splice(index, 1);
+      localStorage.setItem("categories", JSON.stringify(categories));
+      displayCategories();
+    });
+
+    li.appendChild(deleteBtn);
+    categoryList.appendChild(li);
+  });
+}
+
+categoryForm.addEventListener("submit", function (e) {
+  e.preventDefault();
+  const newCategory = categoryInput.value.trim();
+
+  if (newCategory && !categories.includes(newCategory)) {
+    categories.push(newCategory);
+    categoryInput.value = "";
+    localStorage.setItem("categories", JSON.stringify(categories));
+    displayCategories();
+  } else {
+    alert("Category already exists or is invalid.");
+  }
+});
+// sign out functionality
+  document.getElementById("logoutBtn").addEventListener("click", function (e) {
+    e.preventDefault(); // prevent any default link action
+    localStorage.removeItem("loggedIn");
+    window.location.href = "login.html";
+  });
+ 

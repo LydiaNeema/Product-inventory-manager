@@ -15,10 +15,12 @@
 
 </head>
 <body>
+    <!--whole container inside the body is in the div layout-->
     <div class="layout">
-    <!--navigation bar-->
-    
+
+    <!--navigation bar which is a child of the div layout-->
     <aside class="navigation">
+        <!--logo and heading-->
         <div class="logo">
             <div class="topheading">
         <img src="https://cdn-icons-png.flaticon.com/512/847/847969.png" width="30" alt="logo">
@@ -26,29 +28,31 @@
     </div>
     <p class="heading">Inventory management system</p>
  </div>
+
+ <!--navigation links inside the aside bar-->
 <!--onclick to show the main page-->
         <a href="#" class="nav" id="dashboard-link">
             <i class="material-icons">dashboard</i>
         <p>Dashboard</p>
         </a>
-<!---onclick to show different product categories
+<!---onclick to show different product categories-->
      <a href="#" class="nav" id="categories-link">
          <i class="material-icons">category</i>
         <p>Categories</p>
-     </a>-->
+     </a>
     <!--onclick to show the different warehouses and products avaiable
          <a href="#" class="nav" id="warehouse-link">
             <i class="material-icons">location_on</i>
         <p>Warehouse</p>
-        </a>
-    -->
+        </a>-->
+    
 <!--onclick to show the productds and quantinty levels
          <a href="#" class="nav" id="stock-link">
             <i class="material-icons">inventory</i>
         <p>Stock</p>
-        </a>
-    -->
-        <!--onclick to alow the user log out-->
+        </a>-->
+    
+        <!--onclick to allow the user log out-->
         <div class="sign-out">
         <a href="#" class="nav" id="logoutBtn">
             <i class="material-icons">logout</i>
@@ -60,14 +64,18 @@
  
     <!--main section-->
 <main id="container">
-    <!--dashboard section-->
+    <!--dashboard section -whole section inside the main container-->
         <section id="dashboard-section">
+            <!--middle section a child of the dashboard section-->
         <section class="middle">
 <h2 class="tagname">Inventory Dashboard</h2>
+
+<!---controls section to search, add, filter and clear products-->
  <div class="controls">
 <input type="text" placeholder="Search product" id="search-input">
 <button id="search"><i class="material-icons">search</i>Search</button>
-<button id="addbtn"><i class="material-icons">add</i> Add Product</button>
+<button id="clear"><i class="material-icons">close</i>Clear</button>
+<button id="addbtn"><i class="material-icons">add</i> Add New Product</button>
 <button id="filter"><i class="material-icons">filter_list</i>Filter
     <select id="selectCat">
         <option value="">-- Select Category --</option>
@@ -79,10 +87,12 @@
     </select>
 </button>
 </div>
-<!--where form is injected-->
+
+<!--where form is injected when clicking the add product button-->
 <div class="form-wrapper">
 
 </div>
+<!---display section to show the products in a table format a child of dashboard section-->
 <section class="display">
             
             <table>
@@ -105,36 +115,29 @@
                 </tbody>
             </table>
 
-        </section>
+        </section><!---end of display section-->
 
-        </section>
+        </section><!---end of middle section-->
         
-</section>
+</section><!---end of dashboard section-->
 
-    </section>
+    </section><!---end of main section-->
 
-    <!--Categories section
-    <section id="categories-section" style="display:none;">
-        <h2>Product categories</h2>
-        <form id="category-form">
+    <!--Categories section-->
+  <section id="categories-section" style="display:none;">
+  <h2 class="section-title">Product Categories</h2>
+  
+  <form id="category-form" class="category-form">
     <input type="text" id="category-input" placeholder="Enter new category" required />
     <button type="submit">Add Category</button>
   </form>
--->
-  <!-- List of Categories
-  <ul id="category-list"></ul>
-    </section>-->
-    <!--Warehouse section
-    <section id="warehouse-section" style="display:none;">
-        <h2>Location view</h2>
-    
-    </section>-->
-    <!--Stock section
-    <section id="stock-section" style="display:none;">
-        <h2>Stock-Overview</h2>
-    </section>-->
-</main>
-</div>
+  
+  <ul id="category-list" class="category-list"></ul>
+</section><!---end of categories section-->
+
+
+</main><!---end of main section-->
+</div><!---end of layout div-->
     <script src="index.js"></script>
 </body>
 </html>
