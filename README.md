@@ -1,7 +1,6 @@
+# 📦 Product Inventory Manager 
 
-# 📦 Product Inventory Manager
-
-A single-page **Product Inventory Manager** web app built using **HTML**, **CSS**, and **JavaScript**. It provides a simple yet powerful interface to manage products in a warehouse or store. The app uses a local API (via `JSON Server`) to simulate real-world inventory operations such as adding, updating, deleting, and filtering products.
+A single-page **Product Inventory Manager** web app built using **HTML**, **CSS**, and **JavaScript**. It provides a simple yet powerful interface to manage products in a warehouse or store. The app uses a hosted API (via `JSON Server` on Render) to simulate real-world inventory operations such as adding, updating, deleting, and filtering products.
 
 ---
 
@@ -21,16 +20,14 @@ Each product contains the following core attributes:
 - ✅ Quantity  
 - ✅ Price  
 
-All data is persisted and served from a local `db.json` file using **JSON Server**.
+All data is persisted and served from a hosted `JSON Server` API.
 
 ---
 
 ## 🎯 MVP (Minimum Viable Product)
 
-The first version of the app includes the following core functionality:
-
 ### 📌 Product Display
-- Fetch and display all products from a local API.
+- Fetch and display all products from a live API.
 - Each product is rendered with:
   - Name
   - Category
@@ -52,7 +49,6 @@ Users can:
   - `click` → delete, edit, issue/receive stock
   - `submit` → add product
   - `change` → filter by category
-
 - Uses array methods like `.filter()` and `.map()` to manipulate and display product data.
 - Follows **DRY (Don’t Repeat Yourself)** principles by using reusable functions.
 
@@ -65,7 +61,18 @@ Users can:
 | **HTML5**    | Page structure and layout             |
 | **CSS3**     | Custom styling and responsive layout  |
 | **JavaScript** | Core logic and DOM manipulation     |
-| **JSON Server** | Simulated REST API for local data |
+| **JSON Server (Render)** | Simulated REST API for data |
+
+---
+
+## 🔐 Login Credentials (Demo)
+
+To access the application:
+
+- **Username:** `admin`
+- **Password:** `1234`
+
+> Note: This is a mock login for demonstration purposes only. No real authentication system is implemented.
 
 ---
 
@@ -80,64 +87,63 @@ Users can:
 
 ---
 
-## 🚀 Getting Started
+## 🚀 Live Deployment
+
+- **Frontend (GitHub Pages):**  
+  [https://lydianeema.github.io/Product-inventory-manager/](https://lydianeema.github.io/Product-inventory-manager/)
+- **Backend (JSON Server via Render):**  
+  [https://product-inventory-manager.onrender.com/products](https://product-inventory-manager.onrender.com/products)
+
+---
+
+## 🚀 Getting Started Locally
 
 ### 1. Clone this repository
 
 ```bash
-git clone https://github.com/your-username/product-inventory-manager.git
-cd product-inventory-manager
+git clone https://github.com/LydiaNeema/Product-inventory-manager.git
+cd Product-inventory-manager
 ```
+### 2. Set up the backend
+bash
 
-### 2. Install JSON Server
+cd backend
+npm install
+npm start
 
-```bash
-npm install -g json-server
-```
+The backend will run at http://localhost:10000
 
-### 3. Start JSON Server
+### 3. Run the frontend
+Simply open index.html in your browser.
 
-```bash
-json-server --watch db.json --port 3000
-```
+📂 File Structure
+pgsql
+Copy
+Edit
+├── backend/
+│   ├── db.json             # Local database for JSON Server
+│   ├── server.js           # Custom server with CORS enabled
+│   ├── package.json
+├── index.html              # Main HTML page
+├── style.css               # Styling
+├── index.js                # JavaScript logic
+├── login.html              # Simple login simulation
+└── README.md
 
-### 4. Open `index.html` in your browser
+### 💡 Future Enhancements
+Warehouse management with detailed zones
 
----
+Stock movement logs and history
 
-## 📂 File Structure
+Role-based access (e.g., admin vs. staff)
 
-```
-├── db.json             # Local database for JSON Server
-├── index.html          # Main HTML page
-├── style.css           # Styling
-├── index.js            # JavaScript logic
-└── login.html          # Simple login simulation
-```
+Backend integration with Node.js or Firebase
 
----
+PWA capabilities for offline access
 
-## 💡 Future Enhancements
-
-- Warehouse management with detailed zones
-- Stock movement logs and history
-- Role-based access (e.g., admin vs. staff)
-- Backend integration (Node.js or Firebase)
-- PWA capabilities for offline access
-
----
-
-## 🙋‍♀️ Author
-
-**Lydia [@lydiadev]**  
+### 🙋‍♀️ Author
+Lydia [@lydiadev]
 Software Engineering Student | Passionate about Web Development
 
----
-
-## 📜 License
-
+### 📜 License
 This project is open-source and free to use for educational purposes.
-
-
-
- 
