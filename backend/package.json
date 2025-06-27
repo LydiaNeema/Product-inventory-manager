@@ -2,9 +2,10 @@
   "name": "product-inventory-backend",
   "version": "1.0.0",
   "scripts": {
-    "start": "json-server --host 0.0.0.0 --watch db.json --port 10000"
+    "start":"node server.js"
   },
   "dependencies": {
+    "cors": "^2.8.5",
     "json-server": "^0.17.4"
   },
   "description": "",
