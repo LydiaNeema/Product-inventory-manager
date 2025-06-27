@@ -3,7 +3,7 @@ const display=document.querySelector('.display');
 // This URL should point to your backend server where the product data is managed.
 // Make sure your backend is running and accessible at this URL.
 
-const APIURL="https://your-backend-name.onrender.com/products";
+const APIURL= "https://product-inventory-manager.onrender.com/products";
 // This is the table body where product data will be displayed
 const tableBody=document.querySelector('.product-list');
 
