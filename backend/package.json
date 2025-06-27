@@ -1,0 +1,16 @@
+{
+  "name": "product-inventory-backend",
+  "version": "1.0.0",
+  "scripts": {
+    "start": "json-server --watch db.json --port 10000"
+  },
+  "dependencies": {
+    "json-server": "^0.17.4"
+  },
+  "description": "",
+  "main": "index.js",
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs"
+}
